@@ -5,15 +5,16 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+#include "ec.h"
 #include "engine.h"
 
+#include "time.h"
 #include "component.h"
-#include "menu.h"
+#include "ui.h"
 #include "player.h"
 #include "arrow.h"
-#include "monkeydong.h"
-#include "nebula.h"
-#include "brick.h"
+#include "monkey.h"
+#include "stone.h"
 #include "ground.h"
 
 #include "system.h"
@@ -22,12 +23,15 @@
 #define PI 3.14159265
 
 extern Engine_Renderer *renderer;
-
-/* Triger sprite images
- * Use globaly in entire game */
-extern SpriteTriger triger6; /* 6 images per second */
-extern SpriteTriger triger8; /* 8 images per second */
+extern Engine_Renderer *engine_renderer;
 
 extern int gravity;
+
+// defined in time.h
+extern TimeTriger triger1; /* 1 sprite image per second */
+extern TimeTriger triger2; /* 2 sprite images per second */
+extern TimeTriger triger4; /* 4 sprite images per second */
+extern TimeTriger triger6; /* 6 sprite images per second */
+extern TimeTriger triger8; /* 8 sprite images per second */
 
 #endif

@@ -3,18 +3,33 @@
 #ifndef COPONENT_H
 #define COPONENT_H
 
-typedef enum {ON_SKY, ON_GROUND} Place;
-typedef enum {IDLE, MOVE, MOVE_LEFT, MOVE_RIGHT, JUMP, JUMP_LEFT, JUMP_RIGHT, TURN, TURN_LEFT, TURN_RIGHT, STOP} Action;
+Engine_Components_H();
 
-extern Place* place;
-extern Action* action;
-extern int* player_arrow_id;
+typedef enum {
+    ON_SKY,
+    ON_GROUND
+} Place;
 
-void
-Create_Components();
+Component_Array_H(Place, place);
 
-void
-Assign_Components();
+typedef enum {
+    IDLE,
+    MOVE,
+    MOVE_LEFT,
+    MOVE_RIGHT,
+    JUMP,
+    JUMP_LEFT,
+    JUMP_RIGHT, 
+    TURN,
+    TURN_LEFT,
+    TURN_RIGHT, 
+    STOP
+} Action;
+
+Component_Array_H(Action, action);
+
+typedef int Rotation;
+Component_Array_H(Rotation, rotation);
 
 void
 Free_Components();

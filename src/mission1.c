@@ -1,21 +1,5 @@
 #include "mission1.h"
 
-void
-Create_Entities()
-{
-    // Create entities
-    // required entities at this level, maximum entities in all levels
-    players = EC_Entity_New(1, 2); // player entity
-    arrow = EC_Entity_New(1, 2); // arrow entity
-
-    nebulae = EC_Entity_New(1, 2); // nebulae entity
-    monkeyDong = EC_Entity_New(1, 2); // monkeyDong entity
-    brick = EC_Entity_New(1, 2); // monkeyDong entity
-
-    // Create ground entities
-    grounds = EC_Entity_New(3, 6); // ground entity
-}
-
 
 void
 Mission1_init()
@@ -23,17 +7,15 @@ Mission1_init()
     Player_Init_SpriteSheet("resources/textures/player.png");
     Arrow_Init_Spritesheet("resources/textures/arrow.png");
     MonkeyDong_Init_Spriteshteet("resources/textures/monkeydong.png");
-    Nebula_Init_Spritesheet("resources/textures/nebula.png");
-    Brick_Init_Spritesheet("resources/textures/brick.png");
+    Stone_Init_Spritesheet("resources/textures/stone.png");
 
     // player_id, pos_x, pos_y, vel_x, vel_y, scale
     // players.I - first player id
-    Player_Init(players.I, 0, (engine_height - 16), 1, 2, 1);
-    Arrow_Init(arrow.I, 16, 16, 0, 0, 1);
-    MonkeyDong_Init(monkeyDong.I, engine_width - 32, 16, 0, 0, 1);
-    Nebula_Init(nebulae.I, engine_width/3, engine_height/4, 0, 0, 1);
-    Brick_Init(brick.I, 0, (engine_height - 16), 1, -1, 1);
-
+    //Player_Init(players.I, 0, (engine_height - 16), 1, 2, 1);
+    Player_Init(0, 0, (engine_height - 16), 1, 2, 1);
+    Arrow_Init(0, 16, 16, 0, 0, 1);
+    MonkeyDong_Init(0, engine_width - 32, 16, 0, 0, 1);
+    Stone_Init(0, 0, (engine_height - 16), 1, -1, 1);
 
     // Initialize grounds
     Ground_Init();
@@ -47,34 +29,38 @@ Mission1_Free()
     Player_Free();
     Arrow_Free();
     MonkeyDong_Free();
-    Nebula_Free();
-    Brick_Free();
+    Stone_Free();
     Ground_Free();
+
+    // New ECS
+    Free_Component(place);
+    Free_Component(action);
 }
 
 
 int
 Mission1()
 {
-    // Create entities
-    Create_Entities();
+    // New ECS    
+    player = New_Entity(1, 2);
+    arrow = New_Entity(1, 2);
+    monkey = New_Entity(1, 2);
+    stone = New_Entity(1, 2);
 
-    // Create components
-    Engine_Component_Create();
-    Create_Components();
+    // Assign
+    Assign_Player();
+    Assign_Arrow();
+    Assign_Monkey();
+    Assign_Stone();
 
-    // Assign components
-    Assign_Components();
+    // Allocate
+    Allocate(Place, place);
+    Allocate(Action, action);
+    Allocate(Rotation, rotation);
+    Engine_Allocate();
 
     // Initialize entities
     Mission1_init();
-
-    // Sprite common trigering
-    // triger6 and triger8 are global variables defined in main.h
-    Engine_Init_Triger(&triger6, 6);
-    Engine_Init_Triger(&triger8, 8);
-
-    Engine_Init_Time();
 
     bool *quit_mission;
 
@@ -88,14 +74,19 @@ Mission1()
     Engine_Event_Key_Bind(&quit_mission, &engine_key_esc);
 
     int player_state = 0;
+    
+    // Reset time
+    Engine_Init_Time();
 
     /* mission loop */
     while(*quit_mission != true)
     {
-        Engine_Frame_Rate(60, 0);
+        Engine_Frame_Rate(60, 1); // 1 - print fps
 
-        Engine_Sprite_Triger_Update(&triger6); // ** reconsider these two lines
-        Engine_Sprite_Triger_Update(&triger8);
+        Engine_Update_Triger(&triger1);
+        Engine_Update_Triger(&triger2);
+        Engine_Update_Triger(&triger4);
+        Engine_Update_Triger(&triger6);
 
         Engine_Event_Handler();
 
@@ -112,21 +103,24 @@ Mission1()
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 
         /* Detect entity collissions */
-        //System_Player_Nebula_Collission();
+        System_Player_Stone_Collission();
 
         /* Update entities */
         //Engine_Ground_Repeat_Left_Update(far_ground_id);
         //Engine_Ground_Repeat_Left_Update(back_ground_id);
         //Engine_Ground_Repeat_Left_Update(fore_ground_id);
 
-        Nebula_Update();
-        Brick_Update();
+        Stone_Update();
         Arrow_Update();
         Player_Update();
         MonkeyDong_Update();
+
+        System_Render();
 
         SDL_RenderPresent(renderer);
     }
 
     Mission1_Free();
+
+    return 0; //  return 0 for menu or next mission number.
 }

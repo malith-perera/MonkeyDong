@@ -1,13 +1,16 @@
 #include "main.h"
 
-#ifndef INTERACTION_H
-#define INTERACTION_H
+#ifndef SYSTEM_H
+#define SYSTEM_H
 
 void
-System_Player_Nebula_Collission();
+System_Player_Stone_Collission();
 
 void
 System_Toggle_Player_And_Arrow();
 
-#endif
+void
+System_Render();
 
+
+#endif // SYSTEM_H

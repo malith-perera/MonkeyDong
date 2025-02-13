@@ -1,11 +1,7 @@
 #include "main.h"
 
 Engine_Renderer *renderer;
-
-/* Triger sprite images
- * Use globaly in entire game */
-SpriteTriger triger6; /* 6 images per second */
-SpriteTriger triger8; /* 8 images per second */
+Engine_Renderer *engine_renderer;
 
 int gravity = 1;
 
@@ -19,32 +15,43 @@ int main()
 
     engine_quit = false; /* Should initalize to false at begining */
 
-    /* Set triger sprites per second */
-    Engine_Init_Triger(&triger6, 6);
-    Engine_Init_Triger(&triger8, 8);
+    /* triger sprite images per second */
+    Engine_Init_Triger(&triger1, 1, 1);
+    Engine_Init_Triger(&triger2, 2, 1);
+    Engine_Init_Triger(&triger4, 4, 1);
+    Engine_Init_Triger(&triger6, 6, 1);
+    Engine_Init_Triger(&triger8, 8, 1);
 
-    int option; // from menu and missions
+    Ui option = START_UI; // switch default for Menu_Main 
+
+    Init_ECS();
 
     //initAudio();
-
+    
     // main loop
     while(!engine_quit) {
         Engine_Event_Handler();
-        option = Menu_Main();
 
         switch(option) {
-            case -1:
+            case GAME_UI:
+                option = 1;
+                break;
+            case START_UI:
+                option = Start_Ui();
+                break;
+            case QUIT_UI:
                 engine_quit = true;
                 break;
-            case 0:
-                Menu_Settings();
+            case SETTINGS_UI:
+                option = Settings_Ui();
                 break;
             case 1:
                 option = Mission1();
                 break;
-            /*case 1:*/
-                /*option = Mission2();*/
-                /*break;*/
+            case 2:
+                engine_quit = true;
+                //option = Mission2();
+                break;
             default:
                 break;
         }
@@ -54,6 +61,10 @@ int main()
 
     // Free components
     Free_Components();
+
+    Clean();
+
+    Free_ECS();
 
     // End game and clean the memory
     Engine_Stop();

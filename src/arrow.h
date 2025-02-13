@@ -3,8 +3,24 @@
 #ifndef ARROW_H
 #define ARROW_H
 
+extern Entity *arrow;
+extern EntityComponent arrowAction;
+extern EntityComponent arrowRotation;
+extern EntityComponent arrowLastRotation;
+extern EntityComponent arrowSprite;
+extern EntityComponent arrowPosition;
+extern EntityComponent arrowVelocity;
 
-extern ECEntity arrow;
+extern int arrow_rotation; // arrow component
+
+#define Assign_Arrow()\
+    Assign(arrow, action, arrowAction);\
+    Assign(arrow, rotation, arrowRotation);\
+    Assign(arrow, rotation, arrowLastRotation);\
+    Assign(arrow, sprite, arrowSprite);\
+    Assign(arrow, position, arrowPosition);\
+    Assign(arrow, velocity, arrowVelocity)
+
 
 extern bool *arrow_turn_left; // key binding
 extern bool *arrow_turn_right; // key binding
