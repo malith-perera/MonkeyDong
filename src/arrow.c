@@ -1,12 +1,12 @@
 #include "arrow.h"
 
 Entity *arrow;
-EntityComponent arrowAction;
-EntityComponent arrowRotation;
-EntityComponent arrowLastRotation;
-EntityComponent arrowSprite;
-EntityComponent arrowPosition;
-EntityComponent arrowVelocity;
+EntityComponent(arrow, Action);
+EntityComponent(arrow, Sprite);
+EntityComponent(arrow, Position);
+EntityComponent(arrow, Velocity);
+EntityComponent(arrow, Rotation);
+EntityComponent(arrow, LastRotation);
 
 EntityList *arrow_list;
 
@@ -123,10 +123,10 @@ Arrow_Update()
     int arrowRotationId, arrowLastRotationId, arrowSpriteId, arrowPositionId; 
 
     for(int entity_id = 0; entity_id < arrow->n; entity_id++) {
-        arrowRotationId = arrowRotation + entity_id;
-        arrowLastRotationId = arrowLastRotation + entity_id;
-        arrowSpriteId = arrowSprite + entity_id;
-        arrowPositionId = arrowPosition + entity_id;
+        arrowRotationId = arrowRotation.I + entity_id;
+        arrowLastRotationId = arrowLastRotation.I + entity_id;
+        arrowSpriteId = arrowSprite.I + entity_id;
+        arrowPositionId = arrowPosition.I + entity_id;
 
         Arrow_Rotate(entity_id);
 
@@ -151,10 +151,10 @@ Arrow_Update()
 void
 Arrow_Rotate(int arrow_id)
 {
-    const int arrowActionId = arrowAction + arrow_id;
-    const int arrowRotationId = arrowRotation + arrow_id;
-    const int arrowLastRotationId = arrowLastRotation + arrow_id;
-    const int arrowSpriteId = arrowSprite + arrow_id;
+    const int arrowActionId = arrowAction.I + arrow_id;
+    const int arrowRotationId = arrowRotation.I + arrow_id;
+    const int arrowLastRotationId = arrowLastRotation.I + arrow_id;
+    const int arrowSpriteId = arrowSprite.I + arrow_id;
 
     static bool key_up_released = true;
     static bool key_down_released = true;

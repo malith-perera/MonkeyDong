@@ -4,12 +4,12 @@
 #define ARROW_H
 
 extern Entity *arrow;
-extern EntityComponent arrowAction;
-extern EntityComponent arrowRotation;
-extern EntityComponent arrowLastRotation;
-extern EntityComponent arrowSprite;
-extern EntityComponent arrowPosition;
-extern EntityComponent arrowVelocity;
+EntityComponent_H(arrow, Action);
+EntityComponent_H(arrow, Sprite);
+EntityComponent_H(arrow, Position);
+EntityComponent_H(arrow, Velocity);
+EntityComponent_H(arrow, Rotation);
+EntityComponent_H(arrow, LastRotation);
 
 extern EntityList *arrow_list;
 

@@ -1,16 +1,13 @@
 #include "player.h"
 
-Add(player, Place);
 
 // New ECS
 Entity *player;
-EntityComponent playerPlace;
-EntityComponent playerAction;
-EntityComponent playerSprite;
-EntityComponent playerPosition;
-EntityComponent playerVelocity;
-
-EntCom player_Place;
+EntityComponent(player, Place);
+EntityComponent(player, Action);
+EntityComponent(player, Sprite);
+EntityComponent(player, Position);
+EntityComponent(player, Velocity);
 
 SpriteImages *player_move_sprites;
 SpriteImages *player_jump_sprites;
@@ -67,9 +64,8 @@ Player_Init(
     /* entity_id, pos_x, pos_y, vel_x, vel_y, initial_scale */
     Engine_New_Entity_Init(player, entity_id, pos_x, pos_y, vel_x, vel_y, scale);
 
-
-    action[playerAction + entity_id] = IDLE;
-    place[playerPlace + entity_id] = ON_GROUND;
+    action[playerAction.I + entity_id] = IDLE;
+    place[playerPlace.I + entity_id] = ON_GROUND;
 }
 
 void
@@ -85,10 +81,10 @@ void
 Player_Update()
 {
     int entity_id = 0;
-    int playerActionId = playerAction + entity_id;
-    int playerPlaceId = playerPlace + entity_id;
-    int playerSpriteId = playerSprite + entity_id;
-    int playerPositionId = playerPosition + entity_id;
+    int playerActionId = playerAction.I + entity_id;
+    int playerPlaceId = playerPlace.I + entity_id;
+    int playerSpriteId = playerSprite.I + entity_id;
+    int playerPositionId = playerPosition.I + entity_id;
 
     /* check key presses */
     if(*player_move_right == 1 && *player_jump == 1) { // jump right
@@ -115,9 +111,9 @@ Player_Update()
 
     for(int player_id = 0; player_id < player->n; player_id++)
     {
-        playerPlaceId = playerPlace + player_id;
-        playerActionId = playerAction + player_id;
-        playerPositionId = playerPosition + player_id;
+        playerPlaceId = playerPlace.I + player_id;
+        playerActionId = playerAction.I + player_id;
+        playerPositionId = playerPosition.I + player_id;
 
         if(action[playerActionId] == IDLE && (action[playerActionId] == TURN_LEFT || action[playerActionId] == TURN_RIGHT || action[playerActionId] == TURN)) {
             //printf("%d\n", players.M);
@@ -155,11 +151,11 @@ Player_Update()
 void
 Player_Move(int player_id)
 {
-    const int playerPlaceId = playerPlace + player_id;
-    const int playerActionId = playerAction + player_id;
-    const int playerSpriteId = playerSprite + player_id;
-    const int playerPositionId = playerPosition + player_id;
-    const int playerVelocityId = playerVelocity + player_id;
+    const int playerPlaceId = playerPlace.I + player_id;
+    const int playerActionId = playerAction.I + player_id;
+    const int playerSpriteId = playerSprite.I + player_id;
+    const int playerPositionId = playerPosition.I + player_id;
+    const int playerVelocityId = playerVelocity.I + player_id;
 
     if(place[playerPlaceId] == ON_GROUND) {
         Engine_Assign_Sprite(&sprite[playerSpriteId], player_move_sprites);
@@ -185,10 +181,10 @@ Player_Move(int player_id)
 void
 Player_Jump(int player_id)
 {
-    const int playerPlaceId = playerPlace + player_id;
-    const int playerActionId = playerAction + player_id;
-    const int playerSpriteId = playerSprite + player_id;
-    const int playerPositionId = playerPosition + player_id;
+    const int playerPlaceId = playerPlace.I + player_id;
+    const int playerActionId = playerAction.I + player_id;
+    const int playerSpriteId = playerSprite.I + player_id;
+    const int playerPositionId = playerPosition.I + player_id;
 
     static int frm = 0;
     int height[5] = {10, 8, 6, 3, 3};
@@ -254,7 +250,7 @@ Player_Stop(int player_id)
 void
 Player_Idle(int player_id)
 {
-    const int playerSpriteId = playerSprite + player_id;
+    const int playerSpriteId = playerSprite.I + player_id;
 
     Engine_Assign_Sprite(&sprite[playerSpriteId], player_jump_sprites);
 }

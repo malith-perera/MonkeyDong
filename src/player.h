@@ -13,13 +13,11 @@ extern bool *player_jump; // key binding
     
 // Player entity
 extern Entity *player;
-extern EntityComponent playerPlace;
-extern EntityComponent playerAction;
-extern EntityComponent playerSprite;
-extern EntityComponent playerPosition;
-extern EntityComponent playerVelocity;
-
-Add_H(player, Place);
+EntityComponent_H(player, Place);
+EntityComponent_H(player, Action);
+EntityComponent_H(player, Sprite);
+EntityComponent_H(player, Position);
+EntityComponent_H(player, Velocity);
 
 #define Assign_Player()\
     Assign(player, place, playerPlace);\

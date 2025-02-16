@@ -6,10 +6,13 @@ System_Player_Stone_Collission()
     int stoneSpriteId, playerSpriteId;
     static bool collied = false;
     static int test = 0;
+
     for (int player_id = 0; player_id < player->n; player_id++) {
-        playerSpriteId = playerSprite + player_id; 
+        playerSpriteId = playerSprite.I + player_id; 
+
         for (int stone_id = 0; stone_id < stone->n; stone_id++) {
-            stoneSpriteId = stoneSprite + stone_id;
+            stoneSpriteId = stoneSprite.I + stone_id;
+
             if (Engine_AABB_Collition (sprite[playerSpriteId].dst, sprite[stoneSpriteId].dst, 12, 12) == true && collied == false) {
                 printf ("score %d\n", test++);
                 collied = true;
@@ -34,12 +37,10 @@ System_Toggle_Player_And_Arrow()
 void
 System_Render()
 {
-    int playerSpriteId;
 
     // Render players
-    for(int i = 0; i < player->n; i++) {
-        playerSpriteId = playerSprite + i; 
-        Engine_Render(&sprite[playerSpriteId], renderer);
+    for(int player_id = 0; player_id < player->n; player_id++) {
+        Engine_Render(&sprite[playerSprite.I + player_id], renderer);
     }
 
     // Render arrows

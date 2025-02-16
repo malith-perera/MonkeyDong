@@ -4,11 +4,11 @@
 #define stoneS_H
 
 extern Entity *stone;
-extern EntityComponent stonePlace;
-extern EntityComponent stoneAction;
-extern EntityComponent stoneSprite;
-extern EntityComponent stonePosition;
-extern EntityComponent stoneVelocity;
+EntityComponent_H(stone, Place);
+EntityComponent_H(stone, Action);
+EntityComponent_H(stone, Sprite);
+EntityComponent_H(stone, Position);
+EntityComponent_H(stone, Velocity);
 
 extern EntityList *stone_list;
 

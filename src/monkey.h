@@ -11,16 +11,13 @@ extern bool *monkey_run_right; // key binding
 extern bool *monkey_jump; // key binding
         
 extern Entity *monkey;
-extern EntityComponent monkeyPlace;
-extern EntityComponent monkeyAction;
-extern EntityComponent monkeySprite;
-extern EntityComponent monkeyPosition;
-extern EntityComponent monkeyVelocity;
-
-extern EntCom monkeysPlace;
+EntityComponent_H(monkey, Place);
+EntityComponent_H(monkey, Action);
+EntityComponent_H(monkey, Sprite);
+EntityComponent_H(monkey, Position);
+EntityComponent_H(monkey, Velocity);
 
 extern EntityList *monkey_list;
-
 
 #define Assign_Monkey()\
     Assign(monkey, action, monkeyAction);\

@@ -30,6 +30,7 @@ New_Component_H(Action, action);
 
 /* Rotation */
 typedef int Rotation;
+typedef Rotation LastRotation;
 
 New_Component_H(Rotation, rotation);
 

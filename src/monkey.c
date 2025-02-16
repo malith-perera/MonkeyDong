@@ -1,13 +1,11 @@
 #include "monkey.h"
 
 Entity *monkey;
-EntityComponent monkeyPlace;
-EntityComponent monkeyAction;
-EntityComponent monkeySprite;
-EntityComponent monkeyPosition;
-EntityComponent monkeyVelocity;
-
-EntCom monkeysPlace;
+EntityComponent(monkey, Place);
+EntityComponent(monkey, Action);
+EntityComponent(monkey, Sprite);
+EntityComponent(monkey, Position);
+EntityComponent(monkey, Velocity);
 
 EntityList *monkey_list;
 
@@ -71,8 +69,8 @@ MonkeyDong_Update ()
     int monkeyRotationId, monkeyLastRotationId, monkeySpriteId, monkeyPositionId; 
 
     for(int entity_id = 0; entity_id < monkey->n; entity_id++) {
-        monkeySpriteId = monkeySprite + entity_id;
-        monkeyPositionId = monkeyPosition + entity_id;
+        monkeySpriteId = monkeySprite.I + entity_id;
+        monkeyPositionId = monkeyPosition.I + entity_id;
 
         Engine_Triger_Sprite(&sprite[monkeySpriteId], &triger2);
 
@@ -100,13 +98,15 @@ MonkeyDong_Jump(int monkey_id)
 void
 MonkeyDong_Stop(int monkey_id)
 {
-    Engine_Sprite_Stop_triger(&sprite[monkey_id]);
+    Engine_Sprite_Stop_triger(&sprite[monkeySprite.I + monkey_id]);
 }
 
 
 void
 MonkeyDong_Stay(int monkey_id)
 {
-    sprite[monkey_id].sprite_images = monkey_run_sprites;
-    sprite[monkey_id].sprite_images->src.x = sprite[monkey_id].sprite_images->src.w * 2;
+    int monkeySpriteId = monkeySprite.I + monkey_id;
+
+    sprite[monkeySpriteId].sprite_images = monkey_run_sprites;
+    sprite[monkeySpriteId].sprite_images->src.x = sprite[monkeySpriteId].sprite_images->src.w * 2;
 }
