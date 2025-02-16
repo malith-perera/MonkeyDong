@@ -41,11 +41,19 @@ Mission1_Free()
 int
 Mission1()
 {
+    arrow_list = Entity_List();
+    monkey_list = Entity_List();
+    stone_list = Entity_List();
+
     // New ECS    
-    player = New_Entity(1, 2);
-    arrow = New_Entity(1, 2);
-    monkey = New_Entity(1, 2);
-    stone = New_Entity(1, 2);
+    player = New_Entity(player);
+    arrow = New_Entity(arrow);
+    monkey = New_Entity(monkey);
+    stone = New_Entity(stone);
+
+//    arrow_list = New_Entity_List(arrow_list, 1, 2);
+//    monkey_list = New_Entity_List(monkey_list, 1, 2);
+//    stone_list = New_Entity_List(stone_list, 1, 2);
 
     // Assign
     Assign_Player();
@@ -81,7 +89,7 @@ Mission1()
     /* mission loop */
     while(*quit_mission != true)
     {
-        Engine_Frame_Rate(60, 1); // 1 - print fps
+        Engine_Frame_Rate(60, 0); // 1 - print fps
 
         Engine_Update_Triger(&triger1);
         Engine_Update_Triger(&triger2);

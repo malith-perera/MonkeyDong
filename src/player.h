@@ -19,6 +19,8 @@ extern EntityComponent playerSprite;
 extern EntityComponent playerPosition;
 extern EntityComponent playerVelocity;
 
+Add_H(player, Place);
+
 #define Assign_Player()\
     Assign(player, place, playerPlace);\
     Assign(player, action, playerAction);\

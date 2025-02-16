@@ -7,6 +7,10 @@ EntityComponent monkeySprite;
 EntityComponent monkeyPosition;
 EntityComponent monkeyVelocity;
 
+EntCom monkeysPlace;
+
+EntityList *monkey_list;
+
 SpriteImages *monkey_run_sprites;
 SpriteImages *monkey_jump_sprites;
 

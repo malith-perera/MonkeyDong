@@ -10,6 +10,8 @@ extern EntityComponent stoneSprite;
 extern EntityComponent stonePosition;
 extern EntityComponent stoneVelocity;
 
+extern EntityList *stone_list;
+
 #define Assign_Stone()\
     Assign(stone, action, stoneAction);\
     Assign(stone, place, stonePlace);\

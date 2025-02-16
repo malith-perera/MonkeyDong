@@ -11,6 +11,8 @@ extern EntityComponent arrowSprite;
 extern EntityComponent arrowPosition;
 extern EntityComponent arrowVelocity;
 
+extern EntityList *arrow_list;
+
 extern int arrow_rotation; // arrow component
 
 #define Assign_Arrow()\

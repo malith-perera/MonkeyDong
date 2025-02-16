@@ -8,6 +8,8 @@ EntityComponent arrowSprite;
 EntityComponent arrowPosition;
 EntityComponent arrowVelocity;
 
+EntityList *arrow_list;
+
 bool *arrow_turn_left; // key binding
 bool *arrow_turn_right; // key binding
 

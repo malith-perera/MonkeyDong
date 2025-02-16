@@ -17,6 +17,11 @@ extern EntityComponent monkeySprite;
 extern EntityComponent monkeyPosition;
 extern EntityComponent monkeyVelocity;
 
+extern EntCom monkeysPlace;
+
+extern EntityList *monkey_list;
+
+
 #define Assign_Monkey()\
     Assign(monkey, action, monkeyAction);\
     Assign(monkey, place, monkeyPlace);\

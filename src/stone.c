@@ -7,6 +7,8 @@ EntityComponent stoneSprite;
 EntityComponent stonePosition;
 EntityComponent stoneVelocity;
 
+EntityList *stone_list;
+
 SpriteImages *stone_sprites;
 
 void

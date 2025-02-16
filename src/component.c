@@ -1,11 +1,8 @@
 #include "component.h"
 
-Engine_Components();
-
-Component_Array(Place, place);
-Component_Array(Action, action);
-Component_Array(Rotation, rotation);
-
+New_Component(Place, place);
+New_Component(Action, action);
+New_Component(Rotation, rotation);
 
 void
 Free_Components()

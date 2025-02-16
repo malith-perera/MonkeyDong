@@ -1,5 +1,7 @@
 #include "player.h"
 
+Add(player, Place);
+
 // New ECS
 Entity *player;
 EntityComponent playerPlace;
@@ -7,6 +9,8 @@ EntityComponent playerAction;
 EntityComponent playerSprite;
 EntityComponent playerPosition;
 EntityComponent playerVelocity;
+
+EntCom player_Place;
 
 SpriteImages *player_move_sprites;
 SpriteImages *player_jump_sprites;
@@ -105,13 +109,12 @@ Player_Update()
         action[playerActionId] = JUMP;
     }
 
-    if(!(*player_move_right || *player_move_left || *player_jump))
-    {
+    if(!(*player_move_right || *player_move_left || *player_jump)) {
         action[playerActionId] = IDLE;
     }
 
-    for(int player_id = 0; player_id < player->n; player_id++) {
-
+    for(int player_id = 0; player_id < player->n; player_id++)
+    {
         playerPlaceId = playerPlace + player_id;
         playerActionId = playerAction + player_id;
         playerPositionId = playerPosition + player_id;

@@ -3,15 +3,15 @@
 #ifndef COPONENT_H
 #define COPONENT_H
 
-Engine_Components_H();
-
+/* Place */
 typedef enum {
     ON_SKY,
     ON_GROUND
 } Place;
 
-Component_Array_H(Place, place);
+New_Component_H(Place, place);
 
+/* Action */
 typedef enum {
     IDLE,
     MOVE,
@@ -26,10 +26,12 @@ typedef enum {
     STOP
 } Action;
 
-Component_Array_H(Action, action);
+New_Component_H(Action, action);
 
+/* Rotation */
 typedef int Rotation;
-Component_Array_H(Rotation, rotation);
+
+New_Component_H(Rotation, rotation);
 
 void
 Free_Components();

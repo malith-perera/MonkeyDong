@@ -24,8 +24,6 @@ int main()
 
     Ui option = START_UI; // switch default for Menu_Main 
 
-    Init_ECS();
-
     //initAudio();
     
     // main loop
@@ -63,8 +61,6 @@ int main()
     Free_Components();
 
     Clean();
-
-    Free_ECS();
 
     // End game and clean the memory
     Engine_Stop();
