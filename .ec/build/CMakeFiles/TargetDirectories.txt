@@ -1,3 +1,0 @@
-/home/malith/projects/MonkeyDong/.ec/build/CMakeFiles/MonkeyDong.dir
-/home/malith/projects/MonkeyDong/.ec/build/CMakeFiles/edit_cache.dir
-/home/malith/projects/MonkeyDong/.ec/build/CMakeFiles/rebuild_cache.dir

@@ -1,1 +1,8 @@
+build/
+*.vim
+*.swp
+*.swo
+*.md.backup
+/ec
 vim/
+dev/
